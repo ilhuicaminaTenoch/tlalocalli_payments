@@ -7,9 +7,16 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Address: typeof import('./src/components/Address.vue')['default']
     AppFooter: typeof import('./src/components/AppFooter.vue')['default']
+    Appointment: typeof import('./src/components/Appointment.vue')['default']
+    Customer: typeof import('./src/components/Customer.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    Index: typeof import('./src/components/Index.vue')['default']
+    PaymentMethod: typeof import('./src/components/PaymentMethod.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Steppers: typeof import('./src/components/steppers.vue')['default']
+    TotalPayment: typeof import('./src/components/TotalPayment.vue')['default']
   }
 }
