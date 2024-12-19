@@ -1,8 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import axios from 'axios';
-
-
+import jetpackClient from "@/api/jetpackClient.js";
 
 const form = ref(null);
 const formData = ref({
@@ -17,8 +15,11 @@ const rules = {
   email: (value) => /.+@.+\..+/.test(value) || "Introduce un correo válido",
 };
 
-const submitForm = () => {
-  const valid = form.value.validate();
+const submitForm = async () => {
+  const valid = await form.value.validate();
+
+  const save = await jetpackClient.post()
+
   return { valid, data: formData.value };
 };
 

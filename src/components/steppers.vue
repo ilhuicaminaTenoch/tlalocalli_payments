@@ -31,8 +31,8 @@ const handleNext = async () => {
 
   if (stepperStore.step === 1) {
     console.log("Guardar datos del cliente");
-    ({ valid, data } = customerComponent.value.submitForm())
-    if (valid) appStore.setCustomer(data)
+    ({ valid, data } = await customerComponent.value.submitForm())
+    if (valid.valid) appStore.setCustomer(data)
   } else if (stepperStore.step === 2) {
     console.log("Guardar dirección");
     ({ valid, data } = addressComponent.value.submitForm())
@@ -46,7 +46,7 @@ const handleNext = async () => {
   }
 
   // Avanza al siguiente paso
-  if (stepperStore.step < stepperStore.items.length) {
+  if (valid.valid && (stepperStore.step < stepperStore.items.length)) {
     stepperStore.nextStep();
   }
 };
@@ -83,6 +83,7 @@ const handlePrevious = () => {
     <template v-slot:item.4>
       <PaymentMethod/>
     </template>
+
 
     <template #actions>
       <v-row justify="space-between" class="pa-3">
